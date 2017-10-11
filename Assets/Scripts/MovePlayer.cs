@@ -5,9 +5,9 @@ using UnityEngine;
 public class MovePlayer : MonoBehaviour
 {
 
-    public GameObject bullet;
+    public GameObject bullet; //set the public field of Game Object in the inspector of player
 
-    public float bulletVelocity = 1000.0f;
+    public float bulletVelocity = 1000.0f; //set the public field of initializing bullet's velocity.  
 	// Use this for initialization
 	void Start () {
 		
@@ -24,7 +24,9 @@ public class MovePlayer : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject b = (GameObject) Instantiate(bullet, transform.position + transform.up * 1.5f, Quaternion.identity);
+            //if player pushes the space bar, the bullet object is placed in the game.
+            GameObject b = Instantiate(bullet, transform.position + transform.up * 1.5f, Quaternion.identity);
+            //giving the bullet velocity after launching.
             b.GetComponent<Rigidbody2D>().AddForce(transform.up * bulletVelocity);
         }
     }
@@ -47,6 +49,15 @@ public class MovePlayer : MonoBehaviour
         {
             gameObject.transform.Translate(Vector3.down * 0.1f);
         }
+
+        Vector3 viewPortPosition = Camera.main.WorldToViewportPoint(transform.position);
+        Vector3 viewPortXDelta = Camera.main.WorldToViewportPoint(transform.position + Vector3.left / 2);
+        Vector3 viewPortYDelta = Camera.main.WorldToViewportPoint(transform.position + Vector3.up / 2);
+        float deltaX = viewPortPosition.x - viewPortXDelta.x;
+        float deltaY = -viewPortPosition.y + viewPortYDelta.y;
+        viewPortPosition.x = Mathf.Clamp(viewPortPosition.x, 0 + deltaX, 1 - deltaX);
+        viewPortPosition.y = Mathf.Clamp(viewPortPosition.y, 0 + deltaY, 1 - deltaY);
+        transform.position = Camera.main.ViewportToWorldPoint(viewPortPosition);
     }
 }
 //CTRL+P to stop game scene

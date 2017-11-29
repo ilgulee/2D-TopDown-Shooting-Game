@@ -11,7 +11,7 @@ namespace Assets.Scripts
             Destroy(gameObject, 3); //set the bullet to be removed in 3 seconds
         }
 
-        void OnCollisionEnter2D(Collision2D coll)
+        void OnTriggerEnter2D(Collider2D coll)
         {
             //The enemy bullet object linked to this script checks colliding with obejct tagged "target" and does damage to it.
             if (coll.gameObject.tag == "player")

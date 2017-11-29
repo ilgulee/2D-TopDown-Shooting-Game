@@ -9,7 +9,7 @@ namespace Assets.Scripts
 
         public float BulletVelocity = 1000.0f; //set the public field of initializing bullet's velocity.  
 
-        public AudioClip FireSound;
+        //public AudioClip FireSound;
         void Start()
         {
             //GetComponent<Rigidbody2D>().isKinematic = true;
@@ -30,8 +30,8 @@ namespace Assets.Scripts
                 GameObject b = Instantiate(Bullet, transform.position + transform.up * 1.5f, Quaternion.identity);
                 //you can use GetComponent<> to set properties on a specific component and give the bullet velocity after launching after instantiating or cloning.
                 b.GetComponent<Rigidbody2D>().AddForce(transform.up * BulletVelocity);
-                GetComponent<AudioSource>().clip = FireSound;
-                GetComponent<AudioSource>().Play();
+                //GetComponent<AudioSource>().clip = FireSound;
+                //GetComponent<AudioSource>().Play();
 
             }
         }

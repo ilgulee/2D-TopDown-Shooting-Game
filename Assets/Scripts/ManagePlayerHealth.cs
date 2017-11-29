@@ -9,13 +9,7 @@ namespace Assets.Scripts
         public GameObject Explosion;
         public AudioClip HitSound;
         public float TimerForShield;
-        public bool StartInvincibility=true;
-
-        // Use this for initialization
-        private void Start()
-        {
-           
-        }
+        public bool StartInvincibility = true;
 
         // Update is called once per frame
         private void Update()
@@ -23,11 +17,10 @@ namespace Assets.Scripts
             if (StartInvincibility)
             {
                 TimerForShield += Time.deltaTime;
-                if (TimerForShield >= 5)
+                if (TimerForShield >= 2)
                 {
                     TimerForShield = 0;
                     StartInvincibility = false;
-                   
                 }
             }
         }
@@ -45,8 +38,6 @@ namespace Assets.Scripts
                 Destroy(coll.gameObject);
                 DestroyPlayer();
             }
-
-
         }
 
         public void DestroyPlayer()
@@ -55,7 +46,8 @@ namespace Assets.Scripts
             GetComponent<AudioSource>().Play();
             GameObject explosion = Instantiate(Explosion, transform.position, Quaternion.identity);
             Destroy(explosion, .5f);
-            GetComponent<SpriteRenderer>().enabled = false;
+
+            this.gameObject.SetActive(false);
 
             //To reduce live
             ReduceLive();
@@ -63,17 +55,10 @@ namespace Assets.Scripts
 
         private void ReduceLive()
         {
-            GameObject gameObject = GameObject.Find("GameStatus");
-            if (gameObject == null)
-            {
-                Debug.LogError("Failed to find an object named GameStatus");
-                this.enabled = false;
-                return;
-            }
-            //It's the GameStatus script
-            GameStatus gameStatus = gameObject.GetComponent<GameStatus>();
-            gameStatus.NumLives--;
-            int live = gameStatus.NumLives;
+
+            GameStatus.GetInstance().NumLives--;
+
+            int live = GameStatus.GetInstance().NumLives;
             if (live >= 1)
             {
                 Invoke("LoadScene", 2);
@@ -90,8 +75,10 @@ namespace Assets.Scripts
         }
         private void LoadScene()
         {
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            Destroy(this.gameObject);
+
+
         }
     }
 }

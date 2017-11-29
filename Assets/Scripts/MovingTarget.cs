@@ -2,17 +2,17 @@
 
 namespace Assets.Scripts
 {
-    class MovingTarget:MonoBehaviour
+    class MovingTarget : MonoBehaviour
     {
         public float BulletVelocity = 500.0f;
         public GameObject Bullet;
         public bool StartShootingTimer;
         public bool CanShoot = true;
         public float ShootingTimer;
-       
+
         void Start()
         {
-            Destroy(gameObject,10f);
+            Destroy(gameObject, 10f);
             GetComponent<Rigidbody2D>().isKinematic = true;
             GetComponent<Rigidbody2D>().velocity = Vector2.down * 2;
         }
@@ -22,7 +22,7 @@ namespace Assets.Scripts
             if (StartShootingTimer)
             {
                 ShootingTimer += Time.deltaTime;
-                if (ShootingTimer >=1.5)
+                if (ShootingTimer >= 1.5)
                 {
                     StartShootingTimer = false;
                     CanShoot = true;
@@ -30,16 +30,20 @@ namespace Assets.Scripts
                 }
             }
             DetectPlayer();
-           
+
         }
 
         private void DetectPlayer()
         {
-            float playerXPositon = GameObject.Find("player").transform.position.x;
-            if (transform.position.x < (playerXPositon + 1) && transform.position.x > (playerXPositon - 1))
+            if ((GameObject.Find("player") != null))
             {
-                Shoot();
+                float playerXPositon = GameObject.Find("player").transform.position.x;
+                if (transform.position.x < (playerXPositon + 1) && transform.position.x > (playerXPositon - 1))
+                {
+                    Shoot();
+                }
             }
+
         }
 
         private void Shoot()
@@ -51,7 +55,7 @@ namespace Assets.Scripts
                 CanShoot = false;
                 StartShootingTimer = true;
             }
-            
+
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts
 {
-    public class ManageTargetHealth:MonoBehaviour
+    public class ManageTargetHealth : MonoBehaviour
     {
         /// <summary>
         /// Health will be used to determine the health of each target.
@@ -25,7 +25,7 @@ namespace Assets.Scripts
         public float Timer;
         public Color PreviousColor;
 
-        public GameObject Explosion; 
+        public GameObject Explosion;
 
         void Start()
         {
@@ -75,7 +75,7 @@ namespace Assets.Scripts
                 GetComponent<SpriteRenderer>().color = Color.red;
                 IsBlinking = true;
             }
-           
+
         }
 
         private void DestroyTarget()
@@ -83,7 +83,7 @@ namespace Assets.Scripts
             GetComponent<AudioSource>().clip = HitSound;
             GetComponent<AudioSource>().Play();
             GameObject explosion = Instantiate(Explosion, transform.position, Quaternion.identity);
-            Destroy(explosion,.5f);
+            Destroy(explosion, .5f);
             Destroy(gameObject);
             GetComponent<SpriteRenderer>().enabled = false;
             //to get score
@@ -92,16 +92,7 @@ namespace Assets.Scripts
 
         private void GetScore()
         {
-            GameObject gameObject = GameObject.Find("GameStatus");
-            if (gameObject == null)
-            {
-                Debug.LogError("Failed to find an object named GameStatus");
-                this.enabled = false;
-                return;
-            }
-            //It's the GameStatus script
-            GameStatus gameStatus = gameObject.GetComponent<GameStatus>();
-            gameStatus.Score += _score;
+            GameStatus.GetInstance().Score += _score;
         }
     }
 }

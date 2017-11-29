@@ -16,7 +16,7 @@ namespace Assets.Scripts
         }
 
         // Update is called once per frame
-        void Update () 
+        void Update()
         {
             PlayerMove();
             BulletInstance();
@@ -32,7 +32,7 @@ namespace Assets.Scripts
                 b.GetComponent<Rigidbody2D>().AddForce(transform.up * BulletVelocity);
                 GetComponent<AudioSource>().clip = FireSound;
                 GetComponent<AudioSource>().Play();
-                
+
             }
         }
         /// <summary>
@@ -60,7 +60,7 @@ namespace Assets.Scripts
             {
                 gameObject.transform.Translate(Vector3.down * 0.1f);
             }
-            
+
             Vector3 viewPortPosition = Camera.main.WorldToViewportPoint(transform.position);//1
             Vector3 viewPortXDelta = Camera.main.WorldToViewportPoint(transform.position + Vector3.left / 2);
             Vector3 viewPortYDelta = Camera.main.WorldToViewportPoint(transform.position + Vector3.up / 2);

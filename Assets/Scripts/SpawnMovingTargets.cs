@@ -2,10 +2,10 @@
 
 namespace Assets.Scripts
 {
-    public class SpawnMovingTargets:MonoBehaviour
+    public class SpawnMovingTargets : MonoBehaviour
     {
         private float timer = 0;
-        public GameObject newObject;
+        public GameObject NewObject;
 
         void Update()
         {
@@ -17,7 +17,7 @@ namespace Assets.Scripts
 
                 if (timer >= 1f)
                 {
-                    GameObject t = Instantiate(newObject, newPositon, Quaternion.identity);
+                    GameObject t = Instantiate(NewObject, newPositon, Quaternion.identity);
                     Vector3 viewPortPosition = Camera.main.WorldToViewportPoint(t.transform.position);//1
                     Vector3 viewPortXDelta = Camera.main.WorldToViewportPoint(t.transform.position + Vector3.left / 2);
                     float deltaX = viewPortPosition.x - viewPortXDelta.x;
@@ -30,7 +30,7 @@ namespace Assets.Scripts
                     timer = 0;
                 }
             }
-            
+
         }
     }
 }

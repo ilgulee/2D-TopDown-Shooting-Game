@@ -55,7 +55,6 @@ namespace Assets.Scripts
 
         private void ReduceLive()
         {
-
             GameStatus.GetInstance().NumLives--;
 
             int live = GameStatus.GetInstance().NumLives;
@@ -75,10 +74,7 @@ namespace Assets.Scripts
         }
         private void LoadScene()
         {
-
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
-
         }
     }
 }

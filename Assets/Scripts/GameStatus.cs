@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts
 {
@@ -9,6 +10,8 @@ namespace Assets.Scripts
         public int Score = 0;
 
         public int PlayerLevel = 1;
+
+        public int StageLevel = 1;
 
         private static GameStatus _instance;
 
@@ -26,6 +29,16 @@ namespace Assets.Scripts
             }
             _instance = this;
             DontDestroyOnLoad(this.gameObject);
+        }
+
+        private void Update()
+        {
+            // Change Stage when reach to certain score.
+            if (GameStatus.GetInstance().Score >= 100 && GameStatus.GetInstance().StageLevel == 1)
+            {
+                SceneManager.LoadScene("Level2");
+                GameStatus.GetInstance().StageLevel = 2;
+            }
         }
     }
 }

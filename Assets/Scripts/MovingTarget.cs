@@ -4,7 +4,7 @@ namespace Assets.Scripts
 {
     class MovingTarget : MonoBehaviour
     {
-        public float BulletVelocity = 500.0f;
+        public float BulletVelocity;
         public GameObject Bullet;
         public bool StartShootingTimer;
         public bool CanShoot = true;

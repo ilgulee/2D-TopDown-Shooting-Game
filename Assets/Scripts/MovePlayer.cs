@@ -28,6 +28,7 @@ namespace Assets.Scripts
             {
                 //if player pushes the space bar, the bullet object is placed in the game.
                 GameObject b = Instantiate(Bullet, transform.position + transform.up * 1.5f, Quaternion.identity);
+                
                 //you can use GetComponent<> to set properties on a specific component and give the bullet velocity after launching after instantiating or cloning.
                 b.GetComponent<Rigidbody2D>().AddForce(transform.up * BulletVelocity);
                 //GetComponent<AudioSource>().clip = FireSound;

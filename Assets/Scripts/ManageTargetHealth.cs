@@ -18,6 +18,7 @@ namespace Assets.Scripts
         /// </summary>
         public static int TargetBoulder = 0;
 
+       
         private int _score;
         public AudioClip HitSound;
 
@@ -34,6 +35,7 @@ namespace Assets.Scripts
                 Health = 30;
                 _score = 30;
             }
+           
         }
 
         void Update()

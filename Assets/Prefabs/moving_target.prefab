@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8d426df791c7e046a3a968abf52a7c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletVelocity: 1000
+  BulletVelocity: 400
   Bullet: {fileID: 1885120213590764, guid: 7f580e35a1a5f714dacaed311eb697bb, type: 2}
   StartShootingTimer: 0
   CanShoot: 1

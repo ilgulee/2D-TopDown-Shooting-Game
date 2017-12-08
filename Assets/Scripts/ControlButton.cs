@@ -14,7 +14,7 @@ namespace Assets.Scripts
         {
             //to reset GameStatus 
             ResetGameStatus();
-            SceneManager.LoadScene("SplashScreen");
+            SceneManager.LoadScene("TitlePage");
         }
 
         private void ResetGameStatus()

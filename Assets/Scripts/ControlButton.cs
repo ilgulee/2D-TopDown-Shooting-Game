@@ -22,6 +22,7 @@ namespace Assets.Scripts
             GameStatus.GetInstance().NumLives = 3;
             GameStatus.GetInstance().PlayerLevel = 0;
             GameStatus.GetInstance().Score = 0;
+            GameStatus.GetInstance().StageLevel = 1;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Assets.Scripts
 
         void Start()
         {
-            Destroy(gameObject, 10f);
+            Destroy(gameObject, 8f);
             GetComponent<Rigidbody2D>().isKinematic = true;
             GetComponent<Rigidbody2D>().velocity = Vector2.down * 2;
         }
@@ -29,8 +29,7 @@ namespace Assets.Scripts
                     ShootingTimer = 0;
                 }
             }
-            DetectPlayer();
-
+            DetectPlayer(); 
         }
 
         private void DetectPlayer()
@@ -43,7 +42,6 @@ namespace Assets.Scripts
                     Shoot();
                 }
             }
-
         }
 
         private void Shoot()
@@ -55,7 +53,6 @@ namespace Assets.Scripts
                 CanShoot = false;
                 StartShootingTimer = true;
             }
-
         }
     }
 }

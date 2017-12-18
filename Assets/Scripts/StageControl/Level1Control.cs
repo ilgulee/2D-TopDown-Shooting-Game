@@ -50,7 +50,7 @@ namespace Assets.Scripts
         void Update()
         {
             // proceed to next stage when stage is cleared
-            if (spawnedEnemy >= 22 && GameObject.FindGameObjectWithTag("target") == null)
+            if (spawnedEnemy >= 24 && GameObject.FindGameObjectWithTag("target") == null)
                 nextStage();
         }
 

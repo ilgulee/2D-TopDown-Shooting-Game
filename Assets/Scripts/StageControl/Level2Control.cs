@@ -61,7 +61,7 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
-            if (spawnedEnemy >= 22 && GameObject.FindGameObjectWithTag("target") == null)
+            if (spawnedEnemy >= 30 && GameObject.FindGameObjectWithTag("target") == null)
                 nextStage();
         }
 

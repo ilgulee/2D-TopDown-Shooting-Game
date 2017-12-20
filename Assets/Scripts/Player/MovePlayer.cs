@@ -4,14 +4,18 @@ namespace Assets.Scripts
 {
     public class MovePlayer : MonoBehaviour
     {
+        // private variables
 
+
+        // public variables
+        public bool PowerUp = false;
         public GameObject Bullet; //set the public field of Game Object in the inspector of player
-
         public float BulletVelocity = 1000.0f; //set the public field of initializing bullet's velocity.  
 
         //public AudioClip FireSound;
         void Start()
         {
+            PowerUp = GameStatus.GetInstance().PowerUp;
             //GetComponent<Rigidbody2D>().isKinematic = true;
         }
 
@@ -26,14 +30,29 @@ namespace Assets.Scripts
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                //if player pushes the space bar, the bullet object is placed in the game.
-                GameObject b = Instantiate(Bullet, transform.position + transform.up * 1.5f, Quaternion.identity);
                 
-                //you can use GetComponent<> to set properties on a specific component and give the bullet velocity after launching after instantiating or cloning.
-                b.GetComponent<Rigidbody2D>().AddForce(transform.up * BulletVelocity);
-                //GetComponent<AudioSource>().clip = FireSound;
-                //GetComponent<AudioSource>().Play();
+                // check if player has taken powerup item
+                if (!PowerUp)
+                {
+                    //if player pushes the space bar, the bullet object is placed in the game.
+                    GameObject b = Instantiate(Bullet, transform.position + transform.up * 1.5f, Quaternion.identity);
 
+                    //you can use GetComponent<> to set properties on a specific component and give the bullet velocity after launching after instantiating or cloning.
+                    b.GetComponent<Rigidbody2D>().AddForce(transform.up * BulletVelocity);
+                    //GetComponent<AudioSource>().clip = FireSound;
+                    //GetComponent<AudioSource>().Play();
+                }
+                else 
+                {
+                    GameObject bullet1 = Instantiate(Bullet, transform.position + transform.up * 1.5f, Quaternion.identity);
+                    GameObject bullet2 = Instantiate(Bullet, transform.position + transform.up * 1.5f, Quaternion.identity);
+                    GameObject bullet3 = Instantiate(Bullet, transform.position + transform.up * 1.5f, Quaternion.identity);
+
+                    //you can use GetComponent<> to set properties on a specific component and give the bullet velocity after launching after instantiating or cloning.
+                    bullet1.GetComponent<Rigidbody2D>().AddForce(new Vector2(-0.2f, 1).normalized * BulletVelocity);
+                    bullet2.GetComponent<Rigidbody2D>().AddForce(transform.up * BulletVelocity);
+                    bullet3.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.2f, 1).normalized * BulletVelocity);
+                }
             }
         }
         /// <summary>
@@ -73,4 +92,4 @@ namespace Assets.Scripts
         }
     }
 }
-//CTRL+P to stop game scene
+

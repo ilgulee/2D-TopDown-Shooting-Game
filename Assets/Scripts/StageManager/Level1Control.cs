@@ -7,14 +7,17 @@ namespace Assets.Scripts
 {
     public class Level1Control : MonoBehaviour
     {
-        public GameObject NewObject;
+        public GameObject enemyType1;
+        public GameObject ItemPowerUp;
 
-        private int spawnedEnemy; 
+        private int spawnedEnemy;
+        private bool _stageCleared;
 
         // Use this for initialization
         void Start()
         {
             spawnedEnemy = 0;
+            //_stageCleared = false;
 
             // position.x between -4 ~ 4  enemy number: 24
             StartCoroutine(spwanEnemy(new Vector3(-4, 8, 0), 1.0f));
@@ -44,19 +47,24 @@ namespace Assets.Scripts
             StartCoroutine(spwanEnemy(new Vector3(1, 8, 0), 20.0f));
             StartCoroutine(spwanEnemy(new Vector3(-3, 8, 0), 20.0f));
             StartCoroutine(spwanEnemy(new Vector3(-3, 8, 0), 20.0f));
+
+            // items
+            StartCoroutine(dropItem(6.0f));
         }
 
         // Update is called once per frame
         void Update()
         {
             if (spawnedEnemy >= 24 && GameObject.FindGameObjectWithTag("target") == null)
+            {
                 StartCoroutine(nextStage(1.5f));
+            }
         }
 
         private IEnumerator spwanEnemy(Vector3 position, float waitTime)
         {
             yield return new WaitForSeconds(waitTime);
-            GameObject t = Instantiate(NewObject, position, Quaternion.identity);
+            GameObject t = Instantiate(enemyType1, position, Quaternion.identity);
             Vector3 viewPortPosition = Camera.main.WorldToViewportPoint(t.transform.position);
             Vector3 viewPortXDelta = Camera.main.WorldToViewportPoint(t.transform.position + Vector3.left / 2);
             float deltaX = viewPortPosition.x - viewPortXDelta.x;
@@ -69,12 +77,23 @@ namespace Assets.Scripts
             Debug.Log(spawnedEnemy);
         }
 
+        private IEnumerator dropItem(float waitTime)
+        {
+            yield return new WaitForSeconds(waitTime);
+
+            GameObject item = Instantiate(ItemPowerUp, new Vector2(0, 8), Quaternion.identity);
+        }
         // proceed to next stage
         private IEnumerator nextStage(float waitTime)
         {
             yield return new WaitForSeconds(waitTime);
             SceneManager.LoadScene("Level2");
+            // save player power lvl before moving to next stage
+            if (GetComponent<MovePlayer>().PowerUp == true)
+                GameStatus.GetInstance().PowerUp = true;
+
             GameStatus.GetInstance().StageLevel = 2;
+
         }
     }
 }

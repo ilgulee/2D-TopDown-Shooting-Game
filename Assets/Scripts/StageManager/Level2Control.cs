@@ -12,13 +12,20 @@ namespace Assets.Scripts
         public GameObject boss;
 
         private int spawnedEnemy;
-        private bool bossPop;
+        private bool _stageCleared;
 
         // Use this for initialization
         void Start()
         {
             spawnedEnemy = 0;
-            bossPop = false;
+            _stageCleared = false;
+
+
+            if (GameStatus.GetInstance().PowerUp)
+            {
+                GetComponent<MovePlayer>().PowerUp = true;
+                GameStatus.GetInstance().PowerUp = false;
+            }
 
             // position.x between -4 ~ 4  enemy number: 30
             StartCoroutine(spwanEnemy(enemyType1, new Vector3(-4, 8, 0), 1.0f));
@@ -67,8 +74,11 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
-            if (spawnedEnemy >= 31 && GameObject.FindGameObjectWithTag("target") == null)
+            if (spawnedEnemy >= 31 && GameObject.FindGameObjectWithTag("target") == null && !_stageCleared)
+            {
                 StartCoroutine(nextStage(1.5f));
+                _stageCleared = true;
+            }
         }
 
         /**

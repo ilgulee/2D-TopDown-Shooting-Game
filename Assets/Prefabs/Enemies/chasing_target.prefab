@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f54fab6019d66e4fb10fdca44f9cd88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 0
+  Health: 20
   Type: 0
   HitSound: {fileID: 8300000, guid: e5a08a53751db364cb4f2b573014ac9f, type: 3}
   IsBlinking: 0

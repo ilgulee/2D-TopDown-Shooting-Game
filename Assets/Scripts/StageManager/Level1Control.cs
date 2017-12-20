@@ -49,9 +49,8 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
-            // proceed to next stage when stage is cleared
             if (spawnedEnemy >= 24 && GameObject.FindGameObjectWithTag("target") == null)
-                nextStage();
+                StartCoroutine(nextStage(1.5f));
         }
 
         private IEnumerator spwanEnemy(Vector3 position, float waitTime)
@@ -71,8 +70,9 @@ namespace Assets.Scripts
         }
 
         // proceed to next stage
-        private void nextStage()
+        private IEnumerator nextStage(float waitTime)
         {
+            yield return new WaitForSeconds(waitTime);
             SceneManager.LoadScene("Level2");
             GameStatus.GetInstance().StageLevel = 2;
         }

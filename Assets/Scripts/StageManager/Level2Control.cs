@@ -9,13 +9,16 @@ namespace Assets.Scripts
     {
         public GameObject enemyType1;
         public GameObject enemyType2;
+        public GameObject boss;
 
         private int spawnedEnemy;
+        private bool bossPop;
 
         // Use this for initialization
         void Start()
         {
             spawnedEnemy = 0;
+            bossPop = false;
 
             // position.x between -4 ~ 4  enemy number: 30
             StartCoroutine(spwanEnemy(enemyType1, new Vector3(-4, 8, 0), 1.0f));
@@ -35,7 +38,7 @@ namespace Assets.Scripts
             StartCoroutine(spwanEnemy(enemyType1, new Vector3(-4, 8, 0), 11.0f));
             StartCoroutine(spwanEnemy(enemyType1, new Vector3(0, 8, 0), 12.0f));
             StartCoroutine(spwanEnemy(enemyType1, new Vector3(4, 8, 0), 13.0f));
-            StartCoroutine(spwanEnemy(enemyType1, new Vector3(-1, 8, 0), 14.0f));
+            StartCoroutine(spwanEnemy(enemyType2, new Vector3(-1, 8, 0), 14.0f));
             StartCoroutine(spwanEnemy(enemyType1, new Vector3(2, 8, 0), 14.0f));
             StartCoroutine(spwanEnemy(enemyType2, new Vector3(0, 8, 0), 15.0f));
 
@@ -46,23 +49,26 @@ namespace Assets.Scripts
             StartCoroutine(spwanEnemy(enemyType2, new Vector3(-4, 8, 0), 19.0f));
             StartCoroutine(spwanEnemy(enemyType2, new Vector3(4, 8, 0), 19.0f));
 
-            StartCoroutine(spwanEnemy(enemyType2, new Vector3(-4, 8, 0), 20.0f));
+            StartCoroutine(spwanEnemy(enemyType1, new Vector3(-4, 8, 0), 20.0f));
             StartCoroutine(spwanEnemy(enemyType2, new Vector3(-2, 8, 0), 21.0f));
-            StartCoroutine(spwanEnemy(enemyType2, new Vector3(-3, 8, 0), 22.0f));
-            StartCoroutine(spwanEnemy(enemyType2, new Vector3(4, 8, 0), 24.0f));
+            StartCoroutine(spwanEnemy(enemyType1, new Vector3(-3, 8, 0), 22.0f));
+            StartCoroutine(spwanEnemy(enemyType1, new Vector3(4, 8, 0), 24.0f));
             StartCoroutine(spwanEnemy(enemyType2, new Vector3(2, 8, 0), 25.0f));
-            StartCoroutine(spwanEnemy(enemyType2, new Vector3(3, 8, 0), 26.0f));
+            StartCoroutine(spwanEnemy(enemyType1, new Vector3(3, 8, 0), 26.0f));
+
 
             /**
              * Stage Boss
              */
+            StartCoroutine(spwanEnemy(boss, new Vector3(0, 8, 0), 32.0f));
+
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (spawnedEnemy >= 30 && GameObject.FindGameObjectWithTag("target") == null)
-                nextStage();
+            if (spawnedEnemy >= 31 && GameObject.FindGameObjectWithTag("target") == null)
+                StartCoroutine(nextStage(1.5f));
         }
 
         /**
@@ -85,8 +91,9 @@ namespace Assets.Scripts
         }
 
         // proceed to next stage
-        private void nextStage()
+        private IEnumerator nextStage(float waitTime)
         {
+            yield return new WaitForSeconds(waitTime);
             SceneManager.LoadScene("Level3");
             GameStatus.GetInstance().StageLevel = 3;
         }

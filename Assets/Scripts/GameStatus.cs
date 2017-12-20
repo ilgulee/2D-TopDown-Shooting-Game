@@ -33,12 +33,12 @@ namespace Assets.Scripts
 
         private void Update()
         {
-            // Change Stage when reach to certain score.
+            /*// Change Stage when reach to certain score.
             if (GameStatus.GetInstance().Score >= 100 && GameStatus.GetInstance().StageLevel == 1)
             {
                 SceneManager.LoadScene("Level2");
                 GameStatus.GetInstance().StageLevel = 2;
-            }
+            }*/
         }
     }
 }

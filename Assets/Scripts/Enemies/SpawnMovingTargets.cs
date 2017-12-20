@@ -30,7 +30,6 @@ namespace Assets.Scripts
                     timer = 0;
                 }
             }
-
         }
     }
 }

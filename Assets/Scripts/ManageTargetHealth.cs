@@ -17,7 +17,8 @@ namespace Assets.Scripts
         /// outside its class.
         /// </summary>
         public static int TargetBoulder = 0;
-
+        public static int Stage2Boss = 1;
+        public static int Stage3Boss = 2;
        
         private int _score;
         public AudioClip HitSound;
@@ -32,10 +33,14 @@ namespace Assets.Scripts
         {
             if (Type == TargetBoulder)
             {
-                Health = 30;
+                //Health = 30;
                 _score = 30;
             }
-           
+            else if (Type == Stage2Boss)
+            {
+                _score = 900;
+            }
+
         }
 
         void Update()

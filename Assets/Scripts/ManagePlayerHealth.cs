@@ -49,18 +49,24 @@ namespace Assets.Scripts
 
             this.gameObject.SetActive(false);
 
+            
             //To reduce live
-            ReduceLive();
+            Invoke("ReduceLive", 1f);
         }
 
         private void ReduceLive()
         {
-            GameStatus.GetInstance().NumLives--;
+            if(StartInvincibility == false)
+                GameStatus.GetInstance().NumLives--;
+
+            StartInvincibility = true;
+            Debug.Log(GameStatus.GetInstance().NumLives);
 
             int live = GameStatus.GetInstance().NumLives;
+
             if (live >= 1)
             {
-                Invoke("LoadScene", 2);
+                this.gameObject.SetActive(true);
             }
             else
             {

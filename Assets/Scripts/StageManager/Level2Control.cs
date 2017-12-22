@@ -10,6 +10,7 @@ namespace Assets.Scripts
         public GameObject enemyType1;
         public GameObject enemyType2;
         public GameObject boss;
+        public GameObject ItemPowerUp;
 
         private int spawnedEnemy;
         private bool _stageCleared;
@@ -23,11 +24,13 @@ namespace Assets.Scripts
 
             if (GameStatus.GetInstance().PowerUp)
             {
-                GetComponent<MovePlayer>().PowerUp = true;
+                GameObject.FindGameObjectWithTag("Player").GetComponent<MovePlayer>().PowerUp = true;
                 GameStatus.GetInstance().PowerUp = false;
             }
 
-            // position.x between -4 ~ 4  enemy number: 30
+            /**
+             * position.x between -4 ~ 4  enemy number: 30
+             */
             StartCoroutine(spwanEnemy(enemyType1, new Vector3(-4, 8, 0), 1.0f));
             StartCoroutine(spwanEnemy(enemyType1, new Vector3(0, 8, 0), 2.0f));
             StartCoroutine(spwanEnemy(enemyType1, new Vector3(4, 8, 0), 3.0f));
@@ -63,11 +66,15 @@ namespace Assets.Scripts
             StartCoroutine(spwanEnemy(enemyType2, new Vector3(2, 8, 0), 25.0f));
             StartCoroutine(spwanEnemy(enemyType1, new Vector3(3, 8, 0), 26.0f));
 
-
             /**
              * Stage Boss
              */
             StartCoroutine(spwanEnemy(boss, new Vector3(0, 8, 0), 32.0f));
+
+            /**
+             * Items
+             */
+            StartCoroutine(dropItem(6.0f));
 
         }
 
@@ -98,6 +105,12 @@ namespace Assets.Scripts
             // check number of enemies
             spawnedEnemy++;
             Debug.Log(spawnedEnemy);
+        }
+        private IEnumerator dropItem(float waitTime)
+        {
+            yield return new WaitForSeconds(waitTime);
+
+            GameObject item = Instantiate(ItemPowerUp, new Vector2(0, 8), Quaternion.identity);
         }
 
         // proceed to next stage

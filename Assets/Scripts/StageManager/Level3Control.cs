@@ -11,6 +11,7 @@ namespace Assets.Scripts
         public GameObject enemyType1;
         public GameObject enemyType2;
         public GameObject boss;
+        public GameObject ItemPowerUp;
 
         private int spawnedEnemy;
         private bool bossPop;
@@ -21,7 +22,9 @@ namespace Assets.Scripts
             spawnedEnemy = 0;
             bossPop = false;
 
-            // position.x between -4 ~ 4  enemy number: 30
+            /**
+             * position.x between -4 ~ 4  enemy number: 30 ------ mostly duplicated from stage 2
+             */
             StartCoroutine(spwanEnemy(enemyType1, new Vector3(-4, 8, 0), 1.0f));
             StartCoroutine(spwanEnemy(enemyType2, new Vector3( 0, 8, 0), 2.0f));
             StartCoroutine(spwanEnemy(enemyType1, new Vector3( 4, 8, 0), 3.0f));
@@ -63,6 +66,10 @@ namespace Assets.Scripts
              */
             StartCoroutine(spwanEnemy(boss, new Vector3(0, 8, 0), 32.0f));
 
+            /**
+             * Items
+             */
+            StartCoroutine(dropItem(6.0f));
         }
 
         // Update is called once per frame
@@ -90,8 +97,14 @@ namespace Assets.Scripts
             spawnedEnemy++;
             Debug.Log(spawnedEnemy);
         }
+        private IEnumerator dropItem(float waitTime)
+        {
+            yield return new WaitForSeconds(waitTime);
 
-        // proceed to next stage
+            GameObject item = Instantiate(ItemPowerUp, new Vector2(0, 8), Quaternion.identity);
+        }
+
+        // proceed to End
         private IEnumerator nextStage(float waitTime)
         {
             yield return new WaitForSeconds(waitTime);

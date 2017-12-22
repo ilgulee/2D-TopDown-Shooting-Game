@@ -784,6 +784,8 @@ MonoBehaviour:
   enemyType1: {fileID: 1251981100743978, guid: 3ddcaab6d85583e4fbca242885ccd991, type: 2}
   enemyType2: {fileID: 1379858885204294, guid: 26f0f1a7dc1320040a8ca10208684259, type: 2}
   boss: {fileID: 1740689871369840, guid: ffc76e0ff77a5bd4d913dcc92ddf1047, type: 2}
+  ItemPowerUp: {fileID: 1862058223659762, guid: fb21c957c84c5574d9c3e77a6214b8fb,
+    type: 2}
 --- !u!1 &1493292498
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,6 +848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c30cb802759ed534a9280fa3614fdf06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PowerUp: 0
   Bullet: {fileID: 1020149427036124, guid: 21ce3f4923aa43c49aba11bba831b4c0, type: 2}
   BulletVelocity: 1000
 --- !u!212 &2052711545

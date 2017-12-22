@@ -89,7 +89,7 @@ namespace Assets.Scripts
             yield return new WaitForSeconds(waitTime);
             SceneManager.LoadScene("Level2");
             // save player power lvl before moving to next stage
-            if (GetComponent<MovePlayer>().PowerUp == true)
+            if (GameObject.FindGameObjectWithTag("Player").GetComponent<MovePlayer>().PowerUp == true)
                 GameStatus.GetInstance().PowerUp = true;
 
             GameStatus.GetInstance().StageLevel = 2;

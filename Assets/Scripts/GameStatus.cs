@@ -13,6 +13,8 @@ namespace Assets.Scripts
 
         public int StageLevel = 1;
 
+        public bool PowerUp = false;
+
         private static GameStatus _instance;
 
         public static GameStatus GetInstance()

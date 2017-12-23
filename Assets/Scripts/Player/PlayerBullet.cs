@@ -8,7 +8,7 @@ namespace Assets.Scripts
         // Use this for initialization
         void Start()
         {
-            Destroy(gameObject, 3); //set the bullet to be removed in 10 seconds
+            Destroy(gameObject, 3); // destroy player bullet
         }
 
         void OnTriggerEnter2D(Collider2D coll)

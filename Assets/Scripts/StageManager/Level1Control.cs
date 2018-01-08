@@ -93,7 +93,6 @@ namespace Assets.Scripts
                 GameStatus.GetInstance().PowerUp = true;
 
             GameStatus.GetInstance().StageLevel = 2;
-
         }
     }
 }

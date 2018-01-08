@@ -44,14 +44,14 @@ namespace Assets.Scripts
                 }
                 else 
                 {
-                    GameObject bullet1 = Instantiate(Bullet, transform.position + transform.up * 1.5f, Quaternion.identity);
+                    GameObject bullet1 = Instantiate(Bullet, transform.position + new Vector3(0.2f, 1.5f, 0), Quaternion.identity);
                     GameObject bullet2 = Instantiate(Bullet, transform.position + transform.up * 1.5f, Quaternion.identity);
-                    GameObject bullet3 = Instantiate(Bullet, transform.position + transform.up * 1.5f, Quaternion.identity);
+                    GameObject bullet3 = Instantiate(Bullet, transform.position + new Vector3(-0.2f, 1.5f, 0), Quaternion.identity);
 
                     //you can use GetComponent<> to set properties on a specific component and give the bullet velocity after launching after instantiating or cloning.
-                    bullet1.GetComponent<Rigidbody2D>().AddForce(new Vector2(-0.2f, 1).normalized * BulletVelocity);
+                    bullet1.GetComponent<Rigidbody2D>().AddForce(transform.up * BulletVelocity);
                     bullet2.GetComponent<Rigidbody2D>().AddForce(transform.up * BulletVelocity);
-                    bullet3.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.2f, 1).normalized * BulletVelocity);
+                    bullet3.GetComponent<Rigidbody2D>().AddForce(transform.up * BulletVelocity);
                 }
             }
         }
